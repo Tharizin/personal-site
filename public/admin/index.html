@@ -6,12 +6,24 @@
     <!-- Keep the CMS out of search results. -->
     <meta name="robots" content="noindex, nofollow" />
     <title>Content Manager</title>
+
+    <!--
+      Point Decap at an ABSOLUTE config path.
+
+      Without this, Decap fetches "config.yml" relative to the page URL. This
+      page is reachable at /admin (a rewrite onto /admin/index.html, so the URL
+      has no trailing slash), and a relative "config.yml" from /admin resolves
+      to /config.yml at the site root -- which 404s, and the CMS reports
+      "Failed to load config.yml (404)". Next also 308-redirects /admin/ back
+      to /admin, so there is no trailing-slash form that would resolve
+      correctly either. An absolute href sidesteps the whole question.
+    -->
+    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
   </head>
   <body>
     <!--
       Decap CMS mounts itself into the body, so this page needs no markup of
-      its own. It reads its collections from config.yml sitting next to this
-      file, and signs in through the GitHub OAuth proxy named there.
+      its own. It signs in through the GitHub OAuth proxy named in config.yml.
 
       This file lives in public/, so Next.js serves it verbatim and never
       compiles it. That is deliberate: the CMS is a self-contained single-page
