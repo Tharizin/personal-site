@@ -1,0 +1,31 @@
+backend:
+  name: github
+  # Inferred from the GitHub link in the hero (github.com/tharizin) and this
+  # folder's name. The repository does not exist on GitHub yet, so CHECK THIS:
+  # if it is wrong, the CMS loads but every collection comes back empty.
+  repo: tharizin/personal-site
+  branch: main
+  base_url: https://decap-oauth-proxy-pearl.vercel.app
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "gallery"
+    label: "Gallery"
+    folder: "content/gallery"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Caption", name: "caption", widget: "text", required: false }
+  - name: "reading_recs"
+    label: "Reading Recs"
+    folder: "content/reading-recs"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Link", name: "link", widget: "string", required: false }
+      - { label: "Your Take", name: "take", widget: "text" }
+      - { label: "Date", name: "date", widget: "datetime" }

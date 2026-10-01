@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Space-separated channels of theme colour `mist` (#c7d3e0) so the hero
+     overlay can build translucent stops with rgb(var(--mist-rgb) / <alpha>). */
+  --mist-rgb: 199 211 224;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  @apply overflow-x-hidden bg-mist text-neutral-900 antialiased;
+}

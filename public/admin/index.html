@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Keep the CMS out of search results. -->
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Content Manager</title>
+  </head>
+  <body>
+    <!--
+      Decap CMS mounts itself into the body, so this page needs no markup of
+      its own. It reads its collections from config.yml sitting next to this
+      file, and signs in through the GitHub OAuth proxy named there.
+
+      This file lives in public/, so Next.js serves it verbatim and never
+      compiles it. That is deliberate: the CMS is a self-contained single-page
+      app and has nothing to do with the React site around it.
+    -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  </body>
+</html>

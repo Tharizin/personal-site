@@ -1,0 +1,5 @@
+{
+  // This site is no longer a static export -- it needs a running server for the
+  // database, login, and photo uploads, so Live Server cannot serve it at all.
+  // Run `npm run dev` and open http://localhost:3000 instead.
+}
