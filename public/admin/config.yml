@@ -8,7 +8,10 @@ backend:
   # to `public_repo` will sign you in and then fail to read or write anything.
   repo: Tharizin/personal-site
   branch: main
-  base_url: https://decap-oauth-proxy-pearl.vercel.app
+  # base_url and auth_endpoint are injected at runtime by admin/index.html, so
+  # they point at THIS site's own /api/auth and /api/callback routes. Nothing
+  # here needs a hardcoded domain, and no third-party proxy ever sees the
+  # GitHub token.
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"

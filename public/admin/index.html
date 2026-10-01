@@ -14,21 +14,37 @@
       page is reachable at /admin (a rewrite onto /admin/index.html, so the URL
       has no trailing slash), and a relative "config.yml" from /admin resolves
       to /config.yml at the site root -- which 404s, and the CMS reports
-      "Failed to load config.yml (404)". Next also 308-redirects /admin/ back
-      to /admin, so there is no trailing-slash form that would resolve
-      correctly either. An absolute href sidesteps the whole question.
+      "Failed to load config.yml (404)".
     -->
     <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
   </head>
   <body>
     <!--
-      Decap CMS mounts itself into the body, so this page needs no markup of
-      its own. It signs in through the GitHub OAuth proxy named in config.yml.
-
-      This file lives in public/, so Next.js serves it verbatim and never
-      compiles it. That is deliberate: the CMS is a self-contained single-page
-      app and has nothing to do with the React site around it.
+      Hold the CMS back from starting itself, so the backend's base_url can be
+      filled in from the browser before it boots.
     -->
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      /*
+        The OAuth endpoints live in this same site (app/api/auth and
+        app/api/callback), so base_url is simply wherever this page is served
+        from. Setting it at runtime rather than writing it into config.yml means
+        the same commit works on localhost, on Vercel preview deployments and on
+        the production domain, with no value to keep in sync.
+
+        CMS.init merges this over config.yml; conflicting keys win here.
+      */
+      window.CMS.init({
+        config: {
+          backend: {
+            base_url: window.location.origin,
+            auth_endpoint: "api/auth",
+          },
+        },
+      });
+    </script>
   </body>
 </html>
