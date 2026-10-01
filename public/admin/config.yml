@@ -1,9 +1,11 @@
 backend:
   name: github
-  # Inferred from the GitHub link in the hero (github.com/tharizin) and this
-  # folder's name. The repository does not exist on GitHub yet, so CHECK THIS:
-  # if it is wrong, the CMS loads but every collection comes back empty.
-  repo: tharizin/personal-site
+  # Must match the GitHub repository exactly. Your account is `Tharizin` (capital
+  # T) and your other repos are Title-Cased -- Stanford-Fruit-Map, Phylo -- so
+  # this assumes the same style. If the repo is named anything else, change it
+  # here too: a wrong value lets the CMS load but every collection comes back
+  # empty, with no obvious error.
+  repo: Tharizin/Personal-Site
   branch: main
   base_url: https://decap-oauth-proxy-pearl.vercel.app
 
